@@ -19,11 +19,12 @@ const Navbar = () => {
         <Link href="/login" className="text-sm hover:text-gray-300">
           Login
         </Link>
-        <Button
+        <Link href="\signup"><Button
           className="bg-[#c25e44] hover:bg-[#b35540] text-white rounded-full px-6"
         >
           Sign up
         </Button>
+        </Link>
     </div>
   </nav> 
  </> )

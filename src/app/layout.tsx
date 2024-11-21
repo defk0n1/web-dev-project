@@ -1,10 +1,9 @@
-import type { Metadata } from "next";
+"use client";
+
 import localFont from "next/font/local";
 import "./globals.css";
-import Navbar from "../components/ui/navbar"
-
-
-
+import Navbar from "../components/ui/navbar";
+import { usePathname } from "next/navigation";
 
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
@@ -17,25 +16,22 @@ const geistMono = localFont({
   weight: "100 900",
 });
 
-export const metadata: Metadata = {
-  title: "Wed",
-  description: "Wishlisti Website",
-};
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const pathname = usePathname();
+  const showNavbar = pathname !== "/signup" && pathname !== "/login";
+
   return (
     <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
         <div className="min-h-screen bg-black text-white">
-            <Navbar/>
-        {children}
+          {showNavbar && <Navbar />}
+          {children}
         </div>
       </body>
     </html>
   );
 }
-
