@@ -1,7 +1,8 @@
-import Image from "next/image"
+ import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { DM_Sans } from 'next/font/google'
 import { Dynalight  } from 'next/font/google'
+import Link from "next/link"
 
  
 const dm_Sans = DM_Sans({ subsets: ['latin'] })
@@ -29,11 +30,13 @@ export default function Home() {
             <span className={"italic " + dynalight.className}>actually</span>
             <span className="text-gray-500"> wished for</span>
           </p>
+          <Link href="/signup">
           <Button 
             className="bg-[#c25e44] hover:bg-[#b35540] text-white text-lg px-8 py-6 rounded"
           >
             Create your wishlist!
           </Button>
+          </Link>
         </div>
 
         {/* Partners Section */}
