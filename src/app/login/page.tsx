@@ -34,7 +34,7 @@ export default function LoginPage() {
           </div>
           <Input type="email" placeholder="Email" className="mb-2" />
           <Input type="password" placeholder="Password" className="mb-4" />
-          <Button className="w-full bg-[#5A2D1F]">Sign in</Button>
+          <Link href="\profile"><Button className="w-full bg-[#5A2D1F]">Sign in</Button></Link>
           <p className="mt-4 text-center">
             Don’t have an account? <Link href="\signup" className="text-[#A65A45]">Sign Up</Link>
           </p>

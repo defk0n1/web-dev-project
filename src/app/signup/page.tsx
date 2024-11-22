@@ -56,7 +56,7 @@ export default function WishlistForm() {
             <Input type="email" placeholder="Email" className="mb-2" />
             <Input type="password" placeholder="Password" className="mb-2" />
             <Input type="password" placeholder="Confirm Password" className="mb-4" />
-            <Button className="w-full bg-[#5A2D1F]">Sign Up</Button>
+            <Link href="\profile"><Button className="w-full bg-[#5A2D1F]">Sign Up</Button></Link>
           </div>
         )}
       </div>
