@@ -10,7 +10,7 @@ import { FacebookIcon } from '@/components/icons/FacebookIcon'
 
 export default function LoginPage() {
   return (
-    <div className="flex h-screen">
+    <div className="flex flex-col md:flex-row max-h-screen md:h-screen">
       <div className="flex-1 bg-[#A65A45] text-white flex flex-col justify-center items-start p-10">
         <Link href="\" className="flex items-center mb-4 text-white">
           <ArrowLeft className="mr-2" />
