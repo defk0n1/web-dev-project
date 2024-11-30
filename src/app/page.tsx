@@ -1,4 +1,3 @@
- import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { DM_Sans } from 'next/font/google'
 import { Dynalight  } from 'next/font/google'

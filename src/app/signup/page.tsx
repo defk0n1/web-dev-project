@@ -28,9 +28,9 @@ export default function WishlistForm() {
             <div className="flex items-center mb-4">
               <span className="bg-white text-black px-3 py-2 rounded-l-md">wed.tn/</span>
               <Input
-                type="text"
-                placeholder="Enter Username"
-                className="flex-1 rounded-r-md"
+              type="text"
+              placeholder="Enter Username"
+              className="flex-1 rounded-r-md rounded-tl-none rounded-bl-none"
               />
             </div>
             <Button className="w-full bg-[#5A2D1F]" onClick={() => setStep(2)}>Next</Button>
