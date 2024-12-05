@@ -2,7 +2,6 @@ import React from 'react'
 import Link from "next/link"
 import { Button } from "@/components/ui/button"
 import { usePathname } from 'next/navigation'
-import { Divide } from 'lucide-react'
 import Image from 'next/image'
 
 
