@@ -49,6 +49,21 @@ export const options : NextAuthOptions = {
     adapter: PrismaAdapter(prisma),
     secret: process.env.NEXTAUTH_SECRET,
     session: { strategy: "jwt", maxAge: 24 * 60 * 60 },
+    callbacks: {
+  async session({ session, token, user }) {
+    if (session.user) {
+      session.user.email = token.email
+      session.user.username = token.username
+    }
+    return session
+  },
+  async jwt({ token, user }) {
+    if (user) {
+      token.username = user.username
+    }
+    return token
+  }
+}
     // pages: {
     //     signIn: "/login",
     //     signOut: "/login",

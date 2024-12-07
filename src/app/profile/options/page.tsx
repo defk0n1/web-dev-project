@@ -1,16 +1,45 @@
 "use client"
 
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { PencilIcon, Plus } from 'lucide-react'
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar"
 
+
 export default function ProfileEditForm() {
+  const [user, setUser] = useState<User | null>(null)
+  const [isLoading, setIsLoading] = useState(true)
+  const [error, setError] = useState<string | null>(null)
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('/api/user')
+        if (!response.ok) throw new Error('Failed to fetch user')
+        const data = await response.json()
+        
+        // Update profile data with fetched values
+        setProfileData({
+          name: data.name ?? "",
+          username: data.username ?? "",
+          socials: data.socials ?? []
+        })
+      } catch (err: any) {
+        setError(err.message)
+      } finally {
+        setIsLoading(false)
+      }
+    }
+    
+    fetchUser()
+    
+  }, []);
+  
+  
   const [profileData, setProfileData] = useState({
-    username: "zied",
-    displayName: "Zied Kallel",
+    username: user?.username,
+    displayName: user?.username,
     socials: [] as string[]
   })
 
@@ -100,4 +129,3 @@ export default function ProfileEditForm() {
     </div>
   )
 }
-
