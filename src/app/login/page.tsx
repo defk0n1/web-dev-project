@@ -8,8 +8,12 @@ import { GoogleIcon } from '@/components/icons/GoogleIcon'
 import { FacebookIcon } from '@/components/icons/FacebookIcon'
 import { useState } from "react"
 import { useRouter } from 'next/navigation'
+import { toast , ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css';
 
-import {signIn} from "next-auth/react"
+
+import { signIn } from "next-auth/react"
+
 
 export default function LoginPage() {
   const router = useRouter()
@@ -20,20 +24,35 @@ export default function LoginPage() {
   });
 
   const handleSubmit = async (e:any) => {
-    e.preventDefault();
-    signIn("credentials",{
-      ...data,
-      redirect:false
-    });
-    router.push('/profile')
-    
+    e.preventDefault(); 
+    try {
+      const result = await signIn("credentials", {
+        ...data,
+        redirect: false
+      });
+
+      if (result?.error) {
+        throw new Error(result.error); // Trigger the catch block
+      }
+
+      toast.success("Logged in successfully!");
+      router.push('/profile')
+
+    } catch (error) {
+      toast.error("Invalid email or password. Please try again.");
+    }
+  };
 
 
 
-  }
+
+  
 
 
   return (
+<>
+<ToastContainer />
+
     <div className="flex flex-col md:flex-row max-h-screen md:h-screen">
       <div className="flex-1 bg-[#A65A45] text-white flex flex-col justify-center items-start p-10">
         <Link href="\" className="flex items-center mb-4 text-white">
@@ -60,10 +79,13 @@ export default function LoginPage() {
           <Input onChange={(e) => { setData({ ...data, password: e.target.value }) }} value={data.password} type="password" placeholder="Password" className="mb-4" />
           <Button onClick={handleSubmit} className="w-full bg-[#5A2D1F]">Sign in</Button>
           <p className="mt-4 text-center">
-            Don’t have an account? <Link href="\signup" className="text-[#A65A45]">Sign Up</Link>
+            Don’t have an account?
+          <Link href="\signup" className="text-[#A65A45]"> Sign Up</Link>
           </p>
         </div>
       </div>
     </div>
+</>
+
   )
 }

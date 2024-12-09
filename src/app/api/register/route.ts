@@ -7,9 +7,9 @@ export async function POST(request: Request) {
     const result = await request.json()
     console.log(result.data)
 
-    const {username , password , email} = result.data
+    const {username , password , email , fullName} = result.data
 
-    if (!username || !email || !password){
+    if (!username || !email || !password || !fullName){
       return new NextResponse("Missing value",{ status: 400 })
     }
 
@@ -32,7 +32,8 @@ export async function POST(request: Request) {
       data:{
         username,
         email,
-        password:hash
+        password:hash,
+        fullName
       }
     })
 
