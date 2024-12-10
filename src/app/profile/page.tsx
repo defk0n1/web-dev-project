@@ -5,6 +5,11 @@ import { Dynalight } from 'next/font/google'
 import { useEffect, useState } from 'react'
 import { ProfileHeader } from '@/components/profile/profile-header'
 import { WishlistSection } from '@/components/profile/wishlist-section'
+import Wishlist from '@/components/profile/Wishlist'
+
+import { Button } from "@/components/ui/button"
+import { Card } from "@/components/ui/card"
+import { Plus } from 'lucide-react'
 
 const dm_Sans = DM_Sans({ subsets: ['latin'] })
 const dynalight = Dynalight({ weight: ['400'] })
@@ -51,7 +56,26 @@ export default function Profile() {
         name={user.username}
         username={`@${user.username}`}
       />
-      <WishlistSection />
+      {/* If number of wishlists is zero then
+      <WishlistSection /> 
+      */}
+      {/* Else if number of wishlists is greater than zero then
+       */}
+
+      <div className="mb-6 mt-16 flex items-center justify-center space-x-24">
+  <h1 className="text-2xl font-semibold text-white">My Wishlists</h1>
+  <div className="flex gap-3">
+    <Button className="bg-[#c97862] hover:bg-[#c97862]/90">
+      <Plus className="mr-2 h-4 w-4" />
+      Create Wishlist
+    </Button>
+  </div>
+</div>
+  <Wishlist
+  name='Sneakers collecttion'
+  numberOfGifts={2}
+  isEmpty={true}>
+  </Wishlist>
     </main>
   );
 }
