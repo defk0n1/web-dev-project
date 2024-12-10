@@ -1,3 +1,4 @@
+import React from "react"
 import Link from "next/link"
 import Image from "next/image"
 import { ArrowLeft, Pencil, Trash2 } from 'lucide-react'
@@ -15,7 +16,7 @@ interface WishProps {
 
 export default function WishDetails({ name, price, link, image, vendor, vendorlogo }: WishProps) {
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-4">
+    <div className="min-h-screen bg-black text-white p-4">
       <div className="max-w-7xl mx-auto">
         <div className="grid md:grid-cols-2 gap-8">
           {/* Product Image */}

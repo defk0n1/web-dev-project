@@ -1,6 +1,7 @@
 import React from 'react';
 import WishDetails from '../../../components/wish/wishdetails';
 
+
 const WishDetailPage: React.FC = () => {
     const dummyWish = {
         name: "Dreame D10 Plus Gen 2",

@@ -10,6 +10,7 @@ import Wishlist from '@/components/profile/Wishlist'
 import { Button } from "@/components/ui/button"
 import { Card } from "@/components/ui/card"
 import { Plus } from 'lucide-react'
+import Link from 'next/link'
 
 const dm_Sans = DM_Sans({ subsets: ['latin'] })
 const dynalight = Dynalight({ weight: ['400'] })
@@ -71,11 +72,13 @@ export default function Profile() {
     </Button>
   </div>
 </div>
-  <Wishlist
-  name='Sneakers collecttion'
-  numberOfGifts={2}
-  isEmpty={true}>
-  </Wishlist>
+  <Link href="/wishlist">
+    <Wishlist
+      name='Sneakers collection'
+      numberOfGifts={2}
+      isEmpty={true}>
+    </Wishlist>
+  </Link>
     </main>
   );
 }
