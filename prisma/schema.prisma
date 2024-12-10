@@ -16,10 +16,41 @@ generator client {
 model User {
   id            String    @id @default(cuid())
   username          String?
+  fullName          String?
   email         String?   @unique
   password      String?
   emailVerified DateTime?
   image         String?
+  wishlists     Wishlist[]  // A user can have multiple wishlists
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+}
+
+model Wishlist {
+  id          Int        @id @default(autoincrement())
+  title       String?
+  description String?
+  privacy     Privacy     @default(PRIVATE)
+  userId      String
+  user        User        @relation(fields: [userId], references: [id])
+  wishes      Wish[]      // A wishlist can have multiple wishes
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+model Wish {
+  id          Int        @id @default(autoincrement())
+  productName String
+  description String?
+  retailer    String
+  wishlistId  Int
+  wishlist    Wishlist    @relation(fields: [wishlistId], references: [id])
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+}
+
+// Enum for privacy settings
+enum Privacy {
+  PUBLIC
+  PRIVATE
 }

@@ -1,5 +1,4 @@
 import type { NextAuthOptions } from "next-auth";
-import NextAuth from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
 import { compare } from "bcrypt-ts";
@@ -15,7 +14,9 @@ export const options : NextAuthOptions = {
             credentials:{
                 username:{ label: "Username", type: "text", placeholder: "username"},
                 email:{ label: "Email", type: "text", placeholder: "email"},
-                password:{ label :"Password" , type :"password" , placeholder: "password"}
+                password:{ label :"Password" , type :"password" , placeholder: "password"},
+                fullName:{ label :"Full Name" , type :"text" , placeholder: "full name"}
+
             },
             async authorize(credentials){
                 const userCredentials = {
@@ -69,17 +70,16 @@ export const options : NextAuthOptions = {
     //     signOut: "/login",
     //     error: "/login",
     // },
-//     callbacks: {
-//         async session(session, token,user) {
-//             if (user !== null) {
-
-//                 session.user = user;
-//             }
-//             return await session;
-//         },
-
-//         async jwt({ token, user }) {
-//             return await token;
-//         },
+    callbacks: {
+        async session(session,token,user) {
+            if (user !== null) {
+              session.user = user
+            }
+            return await session;
+        }, 
+        async jwt({ token, user }) {
+            return await token;
+        },
 // }
+}
 }

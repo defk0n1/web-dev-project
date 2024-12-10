@@ -16,6 +16,7 @@ export default function WishlistForm() {
   const [data , setData]= useState({
       username:'',
       password:'',
+      fullName:'',
       email:'',
       confirmPassword:''
   })
@@ -82,9 +83,11 @@ export default function WishlistForm() {
               <span className="px-2">or</span>
               <hr className="flex-1 border-gray-600" />
             </div>
+            <Input type="text" onChange={(e) => { setData({ ...data, fullName: e.target.value }) }} placeholder="Full name" className="mb-4" />
             <Input type="email" onChange={(e) => { setData({ ...data, email: e.target.value }) }} value={data.email} placeholder="Email" className="mb-2" />
             <Input type="password" onChange={(e) => { setData({ ...data, password: e.target.value }) }} value={data.password} placeholder="Password" className="mb-2" />
             <Input type="password" onChange={(e) => { setData({ ...data, confirmPassword: e.target.value }) }} placeholder="Confirm Password" className="mb-4" />
+
             <Button onClick={handleSubmit}className="w-full bg-[#5A2D1F]">Sign Up</Button>
           </div>
         )}
