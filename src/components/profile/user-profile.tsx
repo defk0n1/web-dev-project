@@ -6,6 +6,7 @@ import { Button } from '@/components/ui/button'
 import { Share, Edit, Gift } from 'lucide-react'
 import CreateWishlistDialog from '@/components/profile/create-wishlist-dialogue'
 import { Skeleton } from '@/components/ui/skeleton'
+import { useSession } from 'next-auth/react'
 
 interface UserData {
   email: string
@@ -18,13 +19,14 @@ interface UserData {
 
 interface UserProfileProps {
   session: any
-  status: 'loading' | 'authenticated' | 'unauthenticated'
   userData: UserData | null
 }
 
-export const UserProfile: React.FC<UserProfileProps> = ({ session, status, userData }) => {
+export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) => {
   const router = useRouter()
   console.log(userData)
+
+  const {status} = useSession()
   
 
   if (status === 'loading') {
@@ -64,11 +66,11 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, status, userD
               <Gift className="h-8 w-8 text-[#c97862]" />
             </div>
             <h2 className="text-xl">My Wishlists</h2>
-            {!userData?.wishlists ?<>
+            {userData?.wishlists.length > 0 ? <p>you have some wishlists</p> : 
+            <>
             <p className="text-gray-400">You didn't create any wishlists yet.</p>
-            <CreateWishlistDialog /></> : <p>you have some wishlists</p>
-
-            
+            <CreateWishlistDialog />
+            </>
             }
             
           </div>

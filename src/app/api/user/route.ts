@@ -1,15 +1,18 @@
 // app/api/users/route.ts
+"use server"
+
 import { NextRequest, NextResponse } from 'next/server';
-import { getServerSession } from 'next-auth';
+import { getServerSession } from 'next-auth/next';
 import { options } from '../auth/[...nextauth]/options'; // Update with the path to your NextAuth options
 import { prisma } from '@/lib/prisma';
+
 
 // GET handler to fetch the user based on session email
 export async function GET(request: Request) {
   try {
     // Retrieve the session
     const session = await getServerSession(options);
-    console.log(session)
+    console.log('current session: ',session)
 
     // If there's no session or email, return unauthorized
     if (!session?.session.user?.email) {
