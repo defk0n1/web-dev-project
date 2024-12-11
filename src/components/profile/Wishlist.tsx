@@ -1,32 +1,93 @@
-"use client"
+import React from 'react';
+import { Card } from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Plus } from "lucide-react";
+import CreateWishlistDialog from './create-wishlist-dialogue';
 
-import { Button } from "@/components/ui/button"
-import { Card } from "@/components/ui/card"
-import { Plus } from 'lucide-react'
-
-interface WishlistProps {
-  name?: string;
-  numberOfGifts?: number;
-  isEmpty?: boolean;
+// Enum for Privacy (matching the Prisma model)
+enum Privacy {
+  PRIVATE = 'PRIVATE',
+  PUBLIC = 'PUBLIC',
+  SHARED = 'SHARED'
 }
-export default function Wishlist({ name = "My Wishlist", numberOfGifts = 0, isEmpty = true }: WishlistProps) {{
+
+// Wishlist interface matching the Prisma model
+interface Wishlist {
+  id: number;
+  title?: string | null;
+  description?: string | null;
+  privacy: Privacy;
+  userId: string;
+  wishes: Wish[];
+  createdAt: Date;
+  updatedAt: Date;
+}
+
+// Minimal Wish interface (assuming a basic structure)
+interface Wish {
+  id: number;
+  // Add other wish-related properties as needed
+}
+
+interface WishlistViewProps {
+  wishlists: Wishlist[];
+  // onAddWishlist?: () => void;
+}
+
+const Wishlist: React.FC<WishlistViewProps> = ({ 
+  wishlists, 
+  // onAddWishlist 
+}) => {
+
   return (
-      <div className="mx-auto max-w-6xl">
-        
-        <Card className="mb-6 border-2 border-dashed border-[#c97862] bg-transparent">
+    <div className="mx-auto max-w-6xl space-y-6">
+      {wishlists.length === 0 ? (
+        <Card className="border-2 border-dashed border-[#c97862] bg-transparent">
           <div className="flex min-h-[200px] flex-col items-center justify-center gap-4">
-            <p className="text-lg text-white">This Wishlist is empty</p>
-            <Button className="bg-[#c97862] hover:bg-[#c97862]/90">
-          <Plus className="mr-2 h-4 w-4" />
-          Add Wish
-        </Button>
+            <p className="text-lg text-white">No Wishlists Found</p>
+            <CreateWishlistDialog />
+
           </div>
         </Card>
-        <div>
-          <h2 className="mb-2 text-xl font-semibold text-white">{name}</h2>
-          <p className="text-sm text-slate-400">{numberOfGifts} gifts</p>
-        </div>
-      </div>
-  )
-}
+      ) : (
+        wishlists.map((wishlist) => (
+          <div key={wishlist.id} className="bg-gray-800 rounded-lg p-4">
+            <div className="mb-4">
+              <h2 className="mb-2 text-xl font-semibold text-white">
+                {wishlist.title || 'Untitled Wishlist'}
+              </h2>
+              {wishlist.description && (
+                <p className="text-sm text-slate-400">{wishlist.description}</p>
+              )}
+            </div>
+            <div className="flex items-center justify-between">
+              <p className="text-sm text-slate-400">
+                {wishlist.wishes?.length} gifts | 
+                {' '}{wishlist.privacy === Privacy.PRIVATE ? 'Private' : 
+                      wishlist.privacy === Privacy.PUBLIC ? 'Public' : 
+                      'Shared'}
+              </p>
+              <Button 
+                size="sm" 
+                variant="outline"
+                className="text-[#c97862] border-[#c97862] hover:bg-[#c97862]/10"
+              >
+                <Plus className="mr-2 h-4 w-4" />
+                Add Wish
+              </Button>
+            </div>
+          </div>
+        ))
+      )}
+      
+      {wishlists.length > 0 && (
+        <div className="text-center">
+            <CreateWishlistDialog />
 
+        </div>
+      )}
+    </div>
+  );
+};
+
+export default Wishlist;

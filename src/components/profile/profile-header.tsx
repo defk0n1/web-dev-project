@@ -13,7 +13,7 @@ interface ProfileHeaderProps {
   username: string;
 }
 const notify = () => toast("Link Copied!");
- const copyProfileUrl = (username: string) => {
+const copyProfileUrl = (username: string) => {
     // Get base URL without trailing path
     const baseUrl = window.location.origin
   

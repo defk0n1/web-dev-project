@@ -7,6 +7,8 @@ import { Share, Edit, Gift } from 'lucide-react'
 import CreateWishlistDialog from '@/components/profile/create-wishlist-dialogue'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSession } from 'next-auth/react'
+import {ProfileHeader} from "@/components/profile/profile-header"
+import Wishlist from "@/components/profile/wishlist"
 
 interface UserData {
   email: string
@@ -40,33 +42,15 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) =
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="flex flex-col items-center space-y-4">
-        <Avatar className="flex items-center justify-center h-32 w-32 bg-[#c97862] text-white text-4xl">
-          <span>{userData?.email}</span>
-        </Avatar>
-        <h1 className="text-2xl font-light">{userData?.username}</h1>
-        <p style={{ margin: '0' }} className="text-gray-400">@{userData?.username}</p>
-        <div className="flex space-x-2">
-          <Button variant="outline" size="sm" className="text-black border-white/20">
-            <Share className="h-4 w-4 mr-2" />
-            Share
-          </Button>
-          <Button
-            onClick={() => router.push('profile/options')}
-            variant="outline"
-            size="sm"
-            className="text-black border-white/20"
-          >
-            <Edit className="h-4 w-4 mr-2" />
-            Edit
-          </Button>
-        </div>
+      <ProfileHeader initials={userData.username[0]} name={userData?.username} username={userData?.username} />
+
         <div className="mt-16 w-full max-w-2xl p-8 rounded-lg bg-[#4a4a43]/50">
           <div className="flex flex-col items-center text-center space-y-4">
             <div className="bg-white p-4 rounded-lg">
               <Gift className="h-8 w-8 text-[#c97862]" />
             </div>
             <h2 className="text-xl">My Wishlists</h2>
-            {userData?.wishlists.length > 0 ? <p>you have some wishlists</p> : 
+            {userData?.wishlists.length > 0 ? <Wishlist wishlists={userData?.wishlists}></Wishlist> : 
             <>
             <p className="text-gray-400">You didn't create any wishlists yet.</p>
             <CreateWishlistDialog />
