@@ -10,6 +10,7 @@ import { useSession } from 'next-auth/react'
 import {ProfileHeader} from "@/components/profile/profile-header"
 import Wishlist from "@/components/profile/wishlist"
 
+
 interface UserData {
   email: string
   id: string
@@ -22,9 +23,10 @@ interface UserData {
 interface UserProfileProps {
   session: any
   userData: UserData | null
+  isPuclicLink: boolean
 }
 
-export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) => {
+export const UserProfile: React.FC<UserProfileProps> = ({ session, userData , isPuclicLink }) => {
   const router = useRouter()
   console.log(userData)
 
@@ -42,7 +44,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) =
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="flex flex-col items-center space-y-4">
-      <ProfileHeader initials={userData.username[0]} name={userData?.username} username={userData?.username} />
+      <ProfileHeader initials={userData?.username?.[0] ?? ''} name={userData?.username ?? ''} username={userData?.username ?? ''} isPublic = {isPuclicLink} />
 
         <div className="mt-16 w-full max-w-2xl p-8 rounded-lg bg-[#4a4a43]/50">
           <div className="flex flex-col items-center text-center space-y-4">

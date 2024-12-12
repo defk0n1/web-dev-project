@@ -21,6 +21,7 @@ interface Wishlist {
   wishes: Wish[];
   createdAt: Date;
   updatedAt: Date;
+  
 }
 
 // Minimal Wish interface (assuming a basic structure)
@@ -31,13 +32,16 @@ interface Wish {
 
 interface WishlistViewProps {
   wishlists: Wishlist[];
+  isPublic?: boolean;
   // onAddWishlist?: () => void;
 }
 
 const Wishlist: React.FC<WishlistViewProps> = ({ 
   wishlists, 
+  isPublic
   // onAddWishlist 
 }) => {
+
 
   return (
     <div className="mx-auto max-w-6xl space-y-6">
@@ -45,7 +49,7 @@ const Wishlist: React.FC<WishlistViewProps> = ({
         <Card className="border-2 border-dashed border-[#c97862] bg-transparent">
           <div className="flex min-h-[200px] flex-col items-center justify-center gap-4">
             <p className="text-lg text-white">No Wishlists Found</p>
-            <CreateWishlistDialog />
+            {!isPublic && <CreateWishlistDialog />}
 
           </div>
         </Card>
@@ -67,27 +71,17 @@ const Wishlist: React.FC<WishlistViewProps> = ({
                       wishlist.privacy === Privacy.PUBLIC ? 'Public' : 
                       'Shared'}
               </p>
-              <Button 
-                size="sm" 
-                variant="outline"
-                className="text-[#c97862] border-[#c97862] hover:bg-[#c97862]/10"
-              >
-                <Plus className="mr-2 h-4 w-4" />
-                Add Wish
-              </Button>
             </div>
           </div>
         ))
       )}
       
-      {wishlists.length > 0 && (
+      {wishlists.length > 0 &&  (
         <div className="text-center">
-            <CreateWishlistDialog />
-
+            {!isPublic && <CreateWishlistDialog />}
         </div>
       )}
     </div>
-  );
-};
+  );};
 
 export default Wishlist;

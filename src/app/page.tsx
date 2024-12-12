@@ -12,7 +12,7 @@ const dm_Sans = DM_Sans({ subsets: ['latin'] })
 const dynalight = Dynalight({ weight: ['400'] })
 
 const brandImages: BrandImage[] = [
-  { id: 1, name: "Brand A", link: "https://example.com/brand-a" },
+  { id: 1, name: "MyTek", link: "https://www.keejob.com/media/recruiter/recruiter_10649/logo-10649-20171012-131340.png" },
   { id: 2, name: "Brand B", link: "https://example.com/brand-b" },
   { id: 3, name: "Brand C", link: "https://example.com/brand-c" },
   { id: 4, name: "Brand D", link: "https://example.com/brand-d" },

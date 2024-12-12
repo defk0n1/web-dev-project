@@ -27,7 +27,7 @@ export default async function ProfilePage() {
   console.log("ttt",session)
   const userData = await fetchUserData()
 
-  return <UserProfile session={session} userData={userData} />
+  return <UserProfile session={session} userData={userData} isPuclicLink={false} />
 }
 
 
