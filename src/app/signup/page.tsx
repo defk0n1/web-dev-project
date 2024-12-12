@@ -34,7 +34,7 @@ export default function WishlistForm() {
     console.log(response)
     const userInfo = await response.json()
     console.log(userInfo)
-    router.push('/profile')
+    router.push('/login')
 // Export the value of userInfo 
 
   }

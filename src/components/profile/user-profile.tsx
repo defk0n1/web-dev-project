@@ -8,7 +8,7 @@ import CreateWishlistDialog from '@/components/profile/create-wishlist-dialogue'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSession } from 'next-auth/react'
 import {ProfileHeader} from "@/components/profile/profile-header"
-import Wishlist from "@/components/profile/wishlist"
+import WishlistWrapper from '@/components/profile/wishlist-wrapper'
 
 interface UserData {
   email: string
@@ -50,7 +50,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) =
               <Gift className="h-8 w-8 text-[#c97862]" />
             </div>
             <h2 className="text-xl">My Wishlists</h2>
-            {userData?.wishlists.length > 0 ? <Wishlist wishlists={userData?.wishlists}></Wishlist> : 
+            {userData?.wishlists.length > 0 ? <WishlistWrapper wishlists={userData?.wishlists}></WishlistWrapper> : 
             <>
             <p className="text-gray-400">You didn't create any wishlists yet.</p>
             <CreateWishlistDialog />

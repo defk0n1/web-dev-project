@@ -26,6 +26,7 @@ export default async function ProfilePage() {
   const session = await getServerSession(options)
   console.log("ttt",session)
   const userData = await fetchUserData()
+  
 
   return <UserProfile session={session} userData={userData} />
 }

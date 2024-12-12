@@ -3,6 +3,7 @@ import { NextRequest, NextResponse } from 'next/server';
 import { prisma } from '@/lib/prisma';
 import { getServerSession } from 'next-auth';
 import { options } from '../../auth/[...nextauth]/options'; // Update with the path to your NextAuth configuration
+import { revalidateTag } from "next/cache";
 
 export async function POST(request: NextRequest) {
   try {
@@ -57,7 +58,9 @@ export async function POST(request: NextRequest) {
           userId: user.id, // Associate the wishlist with the user
         },
       });
-    console.log(wishlist)
+
+    revalidateTag("User");
+
     // Return the created wishlist
     return NextResponse.json(wishlist, { status: 201 });
   } catch (error) {

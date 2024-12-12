@@ -17,7 +17,7 @@ export async function GET(request: Request) {
     // If there's no session or email, return unauthorized
     if (!session?.session.user?.email) {
       return NextResponse.json(
-        { message: 'Unauthorized' },
+        { message: 'Unauthorized'},
         { status: 401 }
       );
     }

@@ -13,10 +13,9 @@ export async function fetchUserData() {
       headers: {
         'Content-Type': 'application/json',
         // Forward cookies or other headers for session-based authentication if needed
-        cookie: headersList.get('cookie') || '',
-
-
+        cookie: headersList.get('cookie') || ''
       },
+      next:{tags : ['User']}
     });
 
     if (!response.ok) {

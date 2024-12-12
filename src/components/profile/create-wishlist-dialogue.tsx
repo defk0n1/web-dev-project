@@ -46,6 +46,7 @@ export default function CreateWishlistDialog() {
         headers: {
           'Content-Type': 'application/json',
         },
+        next:{tags : ['User']}
       })
       .then((res) => res.json())
       .then((res) => console.log(res))
