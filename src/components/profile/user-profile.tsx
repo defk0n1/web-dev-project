@@ -8,7 +8,7 @@ import CreateWishlistDialog from '@/components/profile/create-wishlist-dialogue'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSession } from 'next-auth/react'
 import {ProfileHeader} from "@/components/profile/profile-header"
-import Wishlist from "@/components/profile/wishlist"
+import Wishlist from "@/components/profile/Wishlist"
 
 
 interface UserData {

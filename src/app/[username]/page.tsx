@@ -4,7 +4,7 @@ import { fetchUserData } from "@/lib/data";
 import { getServerSession } from "next-auth";
 import { options } from "../api/auth/[...nextauth]/options";
 import { Gift } from "lucide-react";
-import Wishlist from "@/components/profile/wishlist";
+import Wishlist from "@/components/profile/Wishlist";
 
 type Props = {
     params: {
