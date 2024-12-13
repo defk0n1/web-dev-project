@@ -21,14 +21,15 @@ export default function PartnersPage() {
           Partners
         </h1>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-12 mt-6" style={{height:"fit-content" , alignItems:"center"}}>
           {partners.map((partner) => (
             <Link href={partner.link} key={partner.id}>
             <div
               key={partner.name}
-              className="bg-[#C97862] rounded-lg p-6 flex items-center justify-center h-24 transition-transform hover:scale-105"
+              className="rounded-lg p-6 flex items-center justify-center h-24 transition-transform hover:scale-105"
+              style={{height:"fit-content"}}
             >
-               <Image src={`/images/${partner.id}.png`} alt={partner.name} width={100} height={100} />
+               <Image src={`/images/${partner.id}.png`} alt={partner.name} width={200} height={200} />
             </div>
             </Link>
           ))}

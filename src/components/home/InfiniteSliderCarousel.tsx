@@ -40,9 +40,9 @@ const InfiniteSliderCarousel = ({ items }: { items: BrandImage[] }) => {
                 <CarouselItem key={item.id} className="pl-2 md:pl-4 md:basis-1/3">
                     <Link href={item.link}>
                     <div className="p-1">
-                        <Card>
+                        <Card className='bg-transparent border-0	'>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
-                                 <Image src={`/images/${item.id}.png`} alt={item.name} width={100} height={100} />
+                                 <Image src={`/images/${item.id}.png`} alt={item.name} width={200} height={200} />
                             </CardContent>
                         </Card>
                     </div>
