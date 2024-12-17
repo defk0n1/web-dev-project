@@ -22,11 +22,13 @@ interface UserData {
 interface UserProfileProps {
   session: any
   userData: UserData | null
+  userWishlists : any
 }
 
-export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) => {
+export const UserProfile: React.FC<UserProfileProps> = ({ session, userData, userWishlists }) => {
   const router = useRouter()
   console.log(userData)
+  console.log(userWishlists)
 
   const {status} = useSession()
   
@@ -50,7 +52,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData }) =
               <Gift className="h-8 w-8 text-[#c97862]" />
             </div>
             <h2 className="text-xl">My Wishlists</h2>
-            {userData?.wishlists.length > 0 ? <WishlistWrapper wishlists={userData?.wishlists}></WishlistWrapper> : 
+            {userWishlists?.length > 0 ? <WishlistWrapper wishlists={userWishlists}></WishlistWrapper> : 
             <>
             <p className="text-gray-400">You didn't create any wishlists yet.</p>
             <CreateWishlistDialog />

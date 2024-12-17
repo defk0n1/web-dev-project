@@ -15,6 +15,8 @@ import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
 import { toast , ToastContainer } from "react-toastify";
+import { revalidateTag } from "next/cache";
+import cacheReval from "@/app/actions"
 
 
 interface Wishlist {
@@ -46,10 +48,17 @@ export default function CreateWishlistDialog() {
         headers: {
           'Content-Type': 'application/json',
         },
-        next:{tags : ['User']}
+        next:{tags : ['Wishlists']
+          
+        }
+
+
       })
       .then((res) => res.json())
       .then((res) => console.log(res))
+      .then(()=>{cacheReval("Wishlists")});
+
+
     console.log(wishlistData , checkbox)
     setOpen(false)
     setWishlistData({

@@ -3,7 +3,9 @@ import { Card } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Plus } from "lucide-react";
 import CreateWishlistDialog from './create-wishlist-dialogue';
-import Wishlist from './wishlist';
+import Wishlist from './Wishlist';
+import cacheReval from '@/app/actions'
+import { useRouter } from 'next/navigation';
 
 // Enum for Privacy (matching the Prisma model)
 enum Privacy {
@@ -39,7 +41,13 @@ const WishlistWrapper: React.FC<WishlistViewProps> = ({
   wishlists, 
   // onAddWishlist 
 }) => {
+  console.log(wishlists)
+  const router = useRouter()
+  const handleWishlistClick = (wishlist:Wishlist) => {
+    console.log('clicked',wishlist)
+    router.push(`/wishlist/${wishlist.id}`)
 
+  }
   return (
     <div className="mx-auto max-w-6xl space-y-6" >
       {wishlists.length === 0 ? (
@@ -52,8 +60,7 @@ const WishlistWrapper: React.FC<WishlistViewProps> = ({
         </Card>
       ) : (
         wishlists.map((wishlist) => (
-          <Wishlist key={wishlist.id} wishlist={wishlist}></Wishlist>
-         
+          <Wishlist onClick={()=>{handleWishlistClick(wishlist)}} key={wishlist.id} wishlist={wishlist} onDelete={()=>{cacheReval("Wishlists")}}></Wishlist> 
         ))
       )}
       

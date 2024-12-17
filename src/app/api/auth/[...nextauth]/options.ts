@@ -1,7 +1,7 @@
 import type { NextAuthOptions } from "next-auth";
 import { PrismaAdapter } from "@next-auth/prisma-adapter";
 
-import { compare } from "bcrypt-ts";
+import {compare} from "bcrypt-ts";
 
 import {prisma} from "../../../../lib/prisma";
 
@@ -35,7 +35,7 @@ export const options : NextAuthOptions = {
                     return null;
                   }
 
-                  const passwordsMatch = await compare( credentials?.password ,user.password )
+                  const passwordsMatch = await compare(credentials?.password ,user.password)
                   if(!passwordsMatch){
                     return null;
                   }

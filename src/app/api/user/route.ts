@@ -32,7 +32,7 @@ export async function GET(request: Request) {
         id: true,
         username: true,
         email: true,
-        wishlists:true
+        // wishlists:true
 
         // Select only the fields you want to expose
         // Exclude sensitive information
@@ -50,9 +50,6 @@ export async function GET(request: Request) {
     // Return user data
     return NextResponse.json(user, {
       status: 200,
-      headers: {
-        'Cache-Control': 'public, s-maxage=3600, stale-while-revalidate=59',
-      },
     });
   } catch (error) {
     console.error('Error fetching user:', error);
