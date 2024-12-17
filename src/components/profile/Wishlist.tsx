@@ -54,7 +54,7 @@ const Wishlist = ({wishlist, onDelete , onClick } : any) => {
         className="flex flex-row justify-center align-center text-orange-500 hover:text-red-700 transition-colors cursor-pointer"
         aria-label="View Wishlist"
       >
-        <Eye size={20} />
+        View
       </button>
 
       {/* Confirmation Dialog */}

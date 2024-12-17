@@ -120,9 +120,9 @@ export default async function WishlistPage({
   return(
   <div className="min-h-screen bg-black text-white">
       <WishlistHeader title={wishlistData.title}/>
-      <WishlistActions/>
-      <WishesWrapper>
-        {wishesData.map((wish)=> <WishDetails key={wish.id}{...wish}></WishDetails>)}
+      <WishlistActions wishlistId={wishlistData.id}/>
+      <WishesWrapper wishlistId={wishlistData.id}>
+        {wishesData.map((wish)=> <WishDetails key={wish.id} {...wish}></WishDetails>)}
       </WishesWrapper>
   </div>
 

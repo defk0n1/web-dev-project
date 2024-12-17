@@ -13,13 +13,13 @@ const WishlistHeader = ({title}:any) => {
           </Button>
           </Link>
            <h1 className="text-2xl font-semibold">{title}</h1>
-          <div className="ml-auto flex items-center gap-2">
+          <div className="flex items-center gap-2">
             <Button variant="ghost" size="icon" className="text-white">
                <Edit2 className="h-5 w-5" />
              </Button>
-             <Button variant="ghost" size="icon" className="text-white">
+             {/* <Button variant="ghost" size="icon" className="text-white">
                <MoreHorizontal className="h-5 w-5" />
-            </Button>
+            </Button> */}
            </div>
          </div>
     </header>

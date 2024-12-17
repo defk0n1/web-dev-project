@@ -36,7 +36,18 @@ export async function GET(request: NextRequest) {
       user: {
         id: user?.id, // Match the user's id
       },
-    }})
+      
+      
+    },
+    select:{
+      id:true,
+      title:true,
+      description:true,
+      privacy:true,
+      userId:true,
+      user:true
+    }
+    })
 
     console.log(wishlists)
 

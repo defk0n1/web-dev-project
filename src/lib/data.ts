@@ -1,5 +1,4 @@
 
-import { revalidateTag } from "next/cache";
 import { headers } from "next/headers"
 
 
@@ -79,7 +78,7 @@ export async function fetchSingleWishlist(wishlistId:any) {
         // Forward cookies or other headers for session-based authentication if needed
         cookie: headersList.get('cookie') || ''
       },
-      next:{tags : ['Wishlists']},
+      next:{tags : ['Wishes']},
       cache:"force-cache"
     });
 
@@ -96,6 +95,9 @@ export async function fetchSingleWishlist(wishlistId:any) {
     throw error;
   }
 }
+
+
+
 
 
 
