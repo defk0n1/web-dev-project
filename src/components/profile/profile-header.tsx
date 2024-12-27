@@ -5,12 +5,15 @@ import { Button } from "@/components/ui/button"
 import { Share, Edit } from 'lucide-react'
 import { useRouter } from "next/navigation"
 import { toast } from 'react-toastify';
+import Image from "next/image"
   import 'react-toastify/dist/ReactToastify.css';
+import ProfilePictureUpload from "./profile-picture-upload"
 
 interface ProfileHeaderProps {
   initials: string;
   name: string;
   username: string;
+  image:string | null ;
 }
 const notify = () => toast("Link Copied!");
 const copyProfileUrl = (username: string) => {
@@ -30,13 +33,14 @@ const copyProfileUrl = (username: string) => {
 
   }
 
-export function ProfileHeader({ initials, name, username }: ProfileHeaderProps) {
+export function ProfileHeader({ initials, name, username, image }: ProfileHeaderProps) {
   const router = useRouter();
 
   return (
     <div className="flex flex-col items-center space-y-4">
       <Avatar className="flex items-center justify-center h-32 w-32 bg-[#c97862] text-white text-4xl">
-        <span>{initials}</span>
+        {/* <Image alt="globe" src="/globe.svg" width={900} height={900}></Image> */}
+        <ProfilePictureUpload image={image}></ProfilePictureUpload>
       </Avatar>
       <h1 className="text-2xl font-light">{name}</h1>
       <p className="text-gray-400 m-0">{username}</p>

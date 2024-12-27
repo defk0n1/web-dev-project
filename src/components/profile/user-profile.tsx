@@ -15,6 +15,7 @@ interface UserData {
   id: string
   username: string
   wishlists:any
+  image:string
 }
 
 
@@ -27,7 +28,7 @@ interface UserProfileProps {
 
 export const UserProfile: React.FC<UserProfileProps> = ({ session, userData, userWishlists }) => {
   const router = useRouter()
-  console.log(userData)
+  console.log(userData?.image)
   console.log(userWishlists)
 
   const {status} = useSession()
@@ -44,7 +45,7 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData, use
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="flex flex-col items-center space-y-4">
-      <ProfileHeader initials={userData.username[0]} name={userData?.username} username={userData?.username} />
+      <ProfileHeader initials={userData.username[0]} name={userData?.username} username={userData?.username} image={userData?.image} />
 
         <div className="mt-16 w-full max-w-2xl p-8 rounded-lg bg-[#4a4a43]/50">
           <div className="flex flex-col items-center text-center space-y-4">

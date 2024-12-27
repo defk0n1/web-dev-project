@@ -6,6 +6,9 @@ const nextConfig: NextConfig = {
       fullUrl: true,
     },
   },
+   images: {
+    domains: ['res.cloudinary.com'], // Add Cloudinary's domain here
+  },
   /* config options here */
 };
 

@@ -32,6 +32,7 @@ export async function GET(request: Request) {
         id: true,
         username: true,
         email: true,
+        image: true
         // wishlists:true
 
         // Select only the fields you want to expose
@@ -46,6 +47,8 @@ export async function GET(request: Request) {
         { status: 404 }
       );
     }
+
+    console.log(user)
 
     // Return user data
     return NextResponse.json(user, {

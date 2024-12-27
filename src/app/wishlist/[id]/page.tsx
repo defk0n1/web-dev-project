@@ -98,6 +98,9 @@ import WishlistHeader from "@/components/wishlist/WishlistHeader"
 import WishlistActions from "@/components/wishlist/WishlistActions"
 import WishesWrapper from "@/components/wishlist/WishesWrapper"
 import WishDetails from "@/components/wish/wishdetails"
+ 
+
+
 
 
 
@@ -111,15 +114,17 @@ export default async function WishlistPage({
 
 
 
+
   const session = await getServerSession(options)
   console.log("ttt",session)
   const wishlistData = await fetchSingleWishlist((await params).id)
+  console.log(wishlistData)
   const wishesData : Array<Object> = wishlistData.wishes 
 
   console.log(wishesData)
   return(
   <div className="min-h-screen bg-black text-white">
-      <WishlistHeader title={wishlistData.title}/>
+      <WishlistHeader title={wishlistData.title} wishlistId={wishlistData.id}/>
       <WishlistActions wishlistId={wishlistData.id}/>
       <WishesWrapper wishlistId={wishlistData.id}>
         {wishesData.map((wish)=> <WishDetails key={wish.id} {...wish}></WishDetails>)}

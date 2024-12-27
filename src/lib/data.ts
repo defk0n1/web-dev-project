@@ -99,6 +99,14 @@ export async function fetchSingleWishlist(wishlistId:any) {
 
 
 
+export async function updateUserProfilePicture(userId: string, profilePictureUrl: string) {
+  return await prisma.user.update({
+    where: { id: userId },
+    data: { image: profilePictureUrl }
+  });
+}
+
+
 
 
 

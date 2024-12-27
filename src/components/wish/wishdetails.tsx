@@ -141,22 +141,22 @@ export default function WishDetails({
                   </Link>
                 </Button>
 
-                <div className="grid grid-cols-2 gap-4">
+                <div className="flex items-center justify-around">
                   <Button
                     variant="secondary"
-                    className="w-full bg-[#c97862] hover:bg-[#c97862]/90"
+                    className="w-fit bg-[#c97862] hover:bg-[#c97862]/90"
                     onClick={() => setIsEditing(true)}
                   >
-                    <Pencil className="h-4 w-4 mr-2" />
-                    Edit
+                    <Pencil className="h-4 w-4" />
+                    
                   </Button>
                   <Button
                     variant="secondary"
-                    className="w-full bg-red-800 hover:bg-gray-700 text-white"
+                    className="w-fit bg-red-800 hover:bg-gray-700 text-white"
                     onClick={() => setIsDeleting(true)}
                   >
-                    <Trash2 className="h-4 w-4 mr-2" />
-                    Delete
+                    <Trash2 className="h-4 w-4" />
+                    
                   </Button>
                 </div>
               </div>
