@@ -1,11 +1,23 @@
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { DM_Sans } from 'next/font/google'
 import { Dynalight  } from 'next/font/google'
 import Link from "next/link"
+import { BrandImage } from '@/lib/types'
 
+
+import InfiniteSliderCarousel from "@/components/home/InfiniteSliderCarousel"
  
 const dm_Sans = DM_Sans({ subsets: ['latin'] })
 const dynalight = Dynalight({ weight: ['400'] })
+
+const brandImages: BrandImage[] = [
+  { id: 1, name: "MyTek", link: "https://www.mytek.tn/" },
+  { id: 2, name: "Ben Yaghlene Shops", link: "https://ben-yaghlane.com/" },
+  { id: 3, name: "Peak", link: "https://www.peaksports.tn/" },
+  { id: 4, name: "SBS Informatique", link: "https://www.sbsinformatique.com/" },
+  { id: 5, name: "Tunisianet", link: "https://www.tunisianet.com.tn/" },
+];
 
 
 export default function Home() {
@@ -41,7 +53,7 @@ export default function Home() {
         {/* Partners Section */}
         <div className="mt-24">
           <p className="text-gray-400 mb-8">Our partners :</p>
-          <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
+          {/* <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-8 items-center">
             {['ASUS', 'Amazon', 'Apple', 'Bose', 'Nespresso', 'Elgato'].map((brand) => (
               <div
                 key={brand}
@@ -50,7 +62,11 @@ export default function Home() {
                 <span className="text-white font-bold">{brand}</span>
               </div>
             ))}
-          </div>
+          </div>   */}
+          <InfiniteSliderCarousel items={brandImages}></InfiniteSliderCarousel>
+
+
+
         </div>
       </main>
       </>

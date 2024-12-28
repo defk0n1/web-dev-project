@@ -14,21 +14,58 @@ import {
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
 import { Checkbox } from "@/components/ui/checkbox"
+import cacheReval from "@/app/actions"
 
+
+interface Wishlist {
+  title : String,
+  description : String , 
+  
+}
 
 export default function CreateWishlistDialog() {
   const [open, setOpen] = useState(false)
   const [checkbox , setCheckbox] = useState(false)
+  const [wishlistData , setWishlistData] = useState<Wishlist>({
+    title : "",
+    description : ""
+  })
 
   const handleCreateWishlist = (event: React.FormEvent) => {
     event.preventDefault()
     // Here you would typically handle the wishlist creation
     console.log("Creating wishlist...")
-    console.log(checkbox)
+    const requestBody = {
+      ...wishlistData , privacy : checkbox
+    } 
+
+    console.log(requestBody)
+      fetch(`/api/user/add-wishlist`,{
+        method:'POST',
+        body: JSON.stringify(requestBody) ,
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        next:{tags : ['Wishlists']
+          
+        }
+
+
+      })
+      .then((res) => res.json())
+      .then((res) => console.log(res))
+      .then(()=>{cacheReval("Wishlists")});
+
+
+    console.log(wishlistData , checkbox)
     setOpen(false)
+    setWishlistData({
+      title : "",
+      description : ""
+    })
   }
 
-  return (
+  return (<>
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="bg-[#c97862] hover:bg-[#c97862]/90">
@@ -53,6 +90,7 @@ export default function CreateWishlistDialog() {
                 id="name"
                 placeholder="Enter a title for this wishlist, e.g. 'Birthday Wishlist' "
                 className="col-span-3"
+                onChange={(e)=>{setWishlistData({...wishlistData , title : e.target.value})}}
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -63,6 +101,7 @@ export default function CreateWishlistDialog() {
                 id="name"
                 placeholder="Enter a description for this wishlist"
                 className="col-span-3"
+                onChange={(e)=>{setWishlistData({...wishlistData , description : e.target.value})}}
               />
             </div>
             <div className="grid grid-cols-4 items-center gap-4">
@@ -80,6 +119,7 @@ export default function CreateWishlistDialog() {
         </form>
       </DialogContent>
     </Dialog>
+    </>
   )
 }
 
