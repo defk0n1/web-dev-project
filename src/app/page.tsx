@@ -8,8 +8,10 @@ import { BrandImage } from '@/lib/types'
 
 import InfiniteSliderCarousel from "@/components/home/InfiniteSliderCarousel"
  
-const dm_Sans = DM_Sans({ subsets: ['latin'] })
-const dynalight = Dynalight({ weight: ['400'] })
+const dm_Sans = DM_Sans({ subsets: ['latin'] ,   preload: false,
+})
+const dynalight = Dynalight({ weight: ['400'] ,  preload: false,
+})
 
 const brandImages: BrandImage[] = [
   { id: 1, name: "MyTek", link: "https://www.mytek.tn/" },

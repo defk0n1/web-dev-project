@@ -1,16 +1,12 @@
 "use server"
 
-import { DM_Sans } from 'next/font/google'
-import { Dynalight  } from 'next/font/google'
+
 import { getServerSession } from "next-auth/next"
 import { UserProfile } from "@/components/profile/user-profile"
 import { fetchUserData , fetchWishlistData } from "../../lib/data"
 import { options } from "../api/auth/[...nextauth]/options"
 import { Avatar } from '@/components/ui/avatar'
 
-
-const dm_Sans = DM_Sans({ subsets: ['latin'] })
-const dynalight = Dynalight({ weight: ['400'] })
 
 interface UserData {
   email: string

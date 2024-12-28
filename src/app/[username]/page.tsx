@@ -1,14 +1,8 @@
 
-import { DM_Sans } from 'next/font/google'
-import { Dynalight  } from 'next/font/google'
-import { getServerSession } from "next-auth/next"
 import { PublicUserProfile } from "@/components/public-profile/public-user-profile"
 import { fetchPublicUserData , fetchPublicWishlistData } from "../../lib/data"
 import { Avatar } from '@/components/ui/avatar'
 
-
-const dm_Sans = DM_Sans({ subsets: ['latin'] })
-const dynalight = Dynalight({ weight: ['400'] })
 
 interface UserData {
   email: string
