@@ -72,15 +72,30 @@ export async function POST(req: Request, { params }: { params: { id: string } })
 
   const body = await req.json();
 
+  console.log(body)
 
-  const { productName, description, retailer } = body;
+
+  const { success , data, formData } = body;
+  
+
+  const imageLink = Object.values(data.images)[0]
+
+  console.log(imageLink)
+  const {productName, description, retailer , amazonLink } = formData
+
+
+
+
+  // productName, description, retailer , amazonLink 
 
     // Input validation
     if (!productName || !retailer) {
       return NextResponse.json({ error: 'Product name and retailer are required' },{status:400});
     }
 
+
     try {
+      
       // Ensure the wishlist exists
       const wishlist = await prisma.wishlist.findUnique({
         where: { id: parseInt(id) },
@@ -97,6 +112,8 @@ export async function POST(req: Request, { params }: { params: { id: string } })
           description,
           retailer,
           wishlistId: parseInt(id),
+          amazonLink : amazonLink,
+          image : imageLink
         },
       });
 

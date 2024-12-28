@@ -1,11 +1,9 @@
-"use server"
 
 import { DM_Sans } from 'next/font/google'
 import { Dynalight  } from 'next/font/google'
 import { getServerSession } from "next-auth/next"
-import { UserProfile } from "@/components/profile/user-profile"
-import { fetchUserData , fetchWishlistData } from "../../lib/data"
-import { options } from "../api/auth/[...nextauth]/options"
+import { PublicUserProfile } from "@/components/public-profile/public-user-profile"
+import { fetchPublicUserData , fetchPublicWishlistData } from "../../lib/data"
 import { Avatar } from '@/components/ui/avatar'
 
 
@@ -22,17 +20,19 @@ interface UserData {
 }
 
 
-export default async function ProfilePage() {
-  const session = await getServerSession(options)
-  console.log("ttt",session)
-  if(!session){
-    return <UnauthenticatedProfile></UnauthenticatedProfile>
-  }
-  const userData = await fetchUserData()
+export default async function PublicProfilePage({
+    params,
+  }: {
+    params: Promise<{ username: string }>
+  }) {
+
+  const username = (await params).username
+  const userData = await fetchPublicUserData(username)
   console.log(userData)
-  const wishlistsData = await fetchWishlistData()
+  const wishlistsData = await fetchPublicWishlistData(username)
   console.log(wishlistsData)
-  return <UserProfile session={session} userData={userData} userWishlists={wishlistsData} />
+  return <PublicUserProfile userData={userData} userWishlists={wishlistsData} />
+
 }
 
 function UnauthenticatedProfile() {

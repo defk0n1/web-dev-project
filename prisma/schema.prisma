@@ -24,6 +24,7 @@ model User {
   wishlists     Wishlist[]  // A user can have multiple wishlists
   createdAt     DateTime  @default(now())
   updatedAt     DateTime  @updatedAt
+  socials       SocialLink[]
 }
 
 model Wishlist {
@@ -44,13 +45,30 @@ model Wish {
   description String?
   retailer    String
   wishlistId  Int
+  amazonLink  String?
+  image       String?
   wishlist    Wishlist    @relation(fields: [wishlistId], references: [id])
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }
 
+model SocialLink {
+  platform  SocialNetwork  // ENUM for platform
+  url       String         // URL of the social link
+  userId    String         // Foreign key referencing User
+  user      User           @relation(fields: [userId], references: [id]) // Relationship to User
+
+  @@id([platform, userId]) // Composite primary key
+}
 // Enum for privacy settings
 enum Privacy {
   PUBLIC
   PRIVATE
+}
+
+enum SocialNetwork {
+  tiktok  
+  facebook
+  linkedin
+  instagram
 }

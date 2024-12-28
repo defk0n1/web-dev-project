@@ -42,6 +42,8 @@ export function ProfilePictureUpload({image} : any) {
       });
 
       const result = await response.json();
+      setPreview(result.imageUrl);
+
       cacheReval("User")
 
       if (response.ok) {

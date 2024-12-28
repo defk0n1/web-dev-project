@@ -7,7 +7,7 @@ const nextConfig: NextConfig = {
     },
   },
    images: {
-    domains: ['res.cloudinary.com'], // Add Cloudinary's domain here
+    domains: ['res.cloudinary.com', "m.media-amazon.com"], // Add Cloudinary's domain here
   },
   /* config options here */
 };

@@ -63,6 +63,10 @@ export function AddWishForm({ wishlistId, onSuccess }: { wishlistId: number, onS
         <Label htmlFor="retailer">Retailer</Label>
         <Input id="retailer" name="retailer" required />
       </div>
+      <div>
+        <Label htmlFor="retailer">Amazon Link</Label>
+        <Input id="amazonLink" name="amazonLink" required />
+      </div>
       
       {error && <p className="text-red-500">{error}</p>}
       

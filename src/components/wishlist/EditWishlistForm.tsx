@@ -36,7 +36,7 @@ export function EditWishlistForm({ wishlistId, onSuccess }: { wishlistId: any, o
       // Mock result
 
       // Use toast or your desired notification
-      // onSuccess()
+      onSuccess()
       
     } catch (error) {
       setError('An error occurred. Please try again.')

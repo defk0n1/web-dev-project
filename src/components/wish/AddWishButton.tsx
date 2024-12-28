@@ -28,7 +28,7 @@ export function AddWishButton({ wishlistId }: { wishlistId: number }) {
             Fill in the details of your wish. Click save when you're done.
           </DialogDescription>
         </DialogHeader>
-        <AddWishForm wishlistId={wishlistId} onSuccess={() =>{setOpen(false),cacheReval("Wishes")} } />
+        <AddWishForm wishlistId={wishlistId} onSuccess={() =>{setOpen(false),cacheReval("Wishlists")} } />
       </DialogContent>
     </Dialog>
   )

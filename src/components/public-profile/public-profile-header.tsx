@@ -1,14 +1,11 @@
 "use client"
 
 import { Avatar } from "@/components/ui/avatar"
-import { Button } from "@/components/ui/button"
-import { Share, Edit } from 'lucide-react'
 import { useRouter } from "next/navigation"
 import { toast } from 'react-toastify';
 import Image from "next/image"
   import 'react-toastify/dist/ReactToastify.css';
-import ProfilePictureUpload from "./profile-picture-upload"
-import { PencilIcon, Plus, Trash2, Facebook, Instagram, Linkedin } from 'lucide-react'
+import { Facebook, Instagram, Linkedin } from 'lucide-react'
 
 
 interface ProfileHeaderProps {
@@ -17,7 +14,7 @@ interface ProfileHeaderProps {
   image:string | undefined ;
   socials : any
 }
-const notify = () => alert("Link copied to clipboard.");
+const notify = () => toast("Link Copied!");
 const copyProfileUrl = (username: string) => {
     // Get base URL without trailing path
     const baseUrl = window.location.origin
@@ -64,7 +61,7 @@ const copyProfileUrl = (username: string) => {
   const SocialLinksDisplay: React.FC<Props> = ({ socials }) => {
     return (
       <>
-        {socials.map((social, index) => (
+        {socials?.map((social, index) => (
         
           <p
             key={index}
@@ -81,38 +78,20 @@ const copyProfileUrl = (username: string) => {
   };
   
 
-export function ProfileHeader({ fullName, username, image , socials }: ProfileHeaderProps) {
+export function PublicProfileHeader({ fullName, username, image , socials }: ProfileHeaderProps) {
   const router = useRouter();
 
   return (
     <div className="flex flex-col items-center space-y-4">
       <Avatar className="flex items-center justify-center h-32 w-32 bg-[#c97862] text-white text-4xl">
-        {/* <Image alt="globe" src="/globe.svg" width={900} height={900}></Image> */}
-        <ProfilePictureUpload image={image}></ProfilePictureUpload>
+        <Image alt="globe" src={image} width={900} height={900}></Image>
       </Avatar>
       <h1 className="text-2xl font-light">{fullName}</h1>
       <p className="text-gray-400 m-0">{username}</p>
       <div className="flex space-x-4">
       <SocialLinksDisplay socials={socials}/>
       </div>
-      <div className="flex space-x-2">
-        <Button variant="outline" size="sm" className="text-black border-white/20" onClick={() => {
-    copyProfileUrl(username);
-    notify();
-  }}>
-          <Share className="h-4 w-4 mr-2" />
-          Share
-        </Button>
-        <Button 
-          onClick={() => router.push('/profile/options')} 
-          variant="outline" 
-          size="sm" 
-          className="text-black border-white/20"
-        >
-          <Edit className="h-4 w-4 mr-2" />
-          Edit
-        </Button>
-      </div>
+      
     </div>
   );
 }

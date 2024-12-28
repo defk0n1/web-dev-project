@@ -21,6 +21,8 @@ interface WishProps {
   wishlistId: number
   createdAt: Date
   updatedAt: Date
+  image: string
+  amazonLink: string
 }
 
 export default function WishDetails({
@@ -30,7 +32,10 @@ export default function WishDetails({
   retailer,
   wishlistId,
   createdAt,
-  updatedAt
+  updatedAt,
+  image,
+  amazonLink
+
 }: WishProps) {
   const [isEditing, setIsEditing] = useState(false)
   const [isDeleting, setIsDeleting] = useState(false)
@@ -92,15 +97,17 @@ export default function WishDetails({
           <div className="max-w-7xl mx-auto">
             <div className="grid md:grid-cols-2 gap-8">
               {/* Product Image */}
-              <div className="bg-white rounded-lg p-8">
-                <Image
-                  src="/placeholder.svg?height=600&width=600"
+              <div className="bg-white rounded-lg p-8 flex">
+               
+              <Image
+                  src={image || "/placeholder.svg?height=600&width=600"}
                   alt={productName}
                   width={600}
                   height={600}
-                  className="w-full h-auto"
+                  className="w-full h-auto self-center"
                 />
-              </div>
+                              </div>
+
 
               {/* Product Details */}
               <div className="space-y-6">
@@ -128,16 +135,16 @@ export default function WishDetails({
                   className="w-full bg-[#c97862] hover:bg-[#c97862]/90"
                   asChild
                 >
-                  <Link href="#" className="inline-flex items-center justify-center">
+                  <Link rel="noopener noreferrer" target="_blank" href={amazonLink || "#"}  className="inline-flex items-center justify-center">
                     <Image
-                      src="/placeholder.svg?height=20&width=20"
+                      src="/amazon.png"
                       alt={retailer}
                       width={20}
                       height={20}
                       className="mr-2 h-5 w-5"
                     />
-                    {retailer}
-                    <span className="ml-2">↗</span>
+                    
+                    <span className="ml-2">Product Page ↗</span>
                   </Link>
                 </Button>
 

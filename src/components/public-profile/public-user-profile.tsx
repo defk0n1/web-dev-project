@@ -7,8 +7,8 @@ import { Share, Edit, Gift } from 'lucide-react'
 import CreateWishlistDialog from '@/components/profile/create-wishlist-dialogue'
 import { Skeleton } from '@/components/ui/skeleton'
 import { useSession } from 'next-auth/react'
-import {ProfileHeader} from "@/components/profile/profile-header"
-import WishlistWrapper from '@/components/profile/wishlist-wrapper'
+import {PublicProfileHeader} from "@/components/public-profile/public-profile-header"
+import PublicWishlistWrapper from '@/components/public-profile/public-wishlist-wrapper'
 
 interface UserData {
   email: string
@@ -22,13 +22,12 @@ interface UserData {
 
 
 
-interface UserProfileProps {
-  session: any
+interface PublicUserProfileProps {
   userData: UserData | null
   userWishlists : any
 }
 
-export const UserProfile: React.FC<UserProfileProps> = ({ session, userData, userWishlists }) => {
+export const PublicUserProfile: React.FC<PublicUserProfileProps> = ({userData, userWishlists }) => {
   const router = useRouter()
   console.log(userData)
   console.log(userWishlists)
@@ -40,14 +39,12 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData, use
     return <ProfileSkeleton />
   }
 
-  if (status === 'unauthenticated') {
-    return <UnauthenticatedProfile />
-  }
+ 
 
   return (
     <main className="container mx-auto px-4 py-8">
       <div className="flex flex-col items-center space-y-4">
-      <ProfileHeader socials={userData?.socials} fullName={userData?.fullName} username={userData?.username} image={userData?.image} />
+      <PublicProfileHeader socials={userData?.socials} fullName={userData?.fullName} username={userData?.username} image={userData?.image} />
 
         <div className="mt-16 w-full max-w-2xl p-8 rounded-lg bg-[#4a4a43]/50">
           <div className="flex flex-col items-center text-center space-y-4">
@@ -55,11 +52,10 @@ export const UserProfile: React.FC<UserProfileProps> = ({ session, userData, use
               <Gift className="h-8 w-8 text-[#c97862]" />
             </div>
             <h2 className="text-xl">My Wishlists</h2>
-            {userWishlists?.length > 0 ? <WishlistWrapper wishlists={userWishlists}></WishlistWrapper> : 
+            {userWishlists?.length > 0 ? <PublicWishlistWrapper wishlists={userWishlists}></PublicWishlistWrapper> : 
             <>
-            <p className="text-gray-400">You didn't create any wishlists yet.</p>
-            <CreateWishlistDialog />
-            </>
+            <p className="text-gray-400">No wishlists found.</p>
+            </> 
             }
             
           </div>
