@@ -1,4 +1,4 @@
- import Image from "next/image"
+import Image from "next/image"
 import { Button } from "@/components/ui/button"
 import { DM_Sans } from 'next/font/google'
 import { Dynalight  } from 'next/font/google'
@@ -12,11 +12,11 @@ const dm_Sans = DM_Sans({ subsets: ['latin'] })
 const dynalight = Dynalight({ weight: ['400'] })
 
 const brandImages: BrandImage[] = [
-  { id: 1, name: "Brand A", link: "https://example.com/brand-a" },
-  { id: 2, name: "Brand B", link: "https://example.com/brand-b" },
-  { id: 3, name: "Brand C", link: "https://example.com/brand-c" },
-  { id: 4, name: "Brand D", link: "https://example.com/brand-d" },
-  { id: 5, name: "Brand E", link: "https://example.com/brand-e" },
+  { id: 1, name: "MyTek", link: "https://www.mytek.tn/" },
+  { id: 2, name: "Ben Yaghlene Shops", link: "https://ben-yaghlane.com/" },
+  { id: 3, name: "Peak", link: "https://www.peaksports.tn/" },
+  { id: 4, name: "SBS Informatique", link: "https://www.sbsinformatique.com/" },
+  { id: 5, name: "Tunisianet", link: "https://www.tunisianet.com.tn/" },
 ];
 
 

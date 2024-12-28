@@ -47,7 +47,7 @@ model Wish {
   wishlistId  Int
   amazonLink  String?
   image       String?
-  wishlist    Wishlist    @relation(fields: [wishlistId], references: [id])
+  wishlist    Wishlist    @relation(fields: [wishlistId], references: [id], onDelete: Cascade)
   createdAt   DateTime    @default(now())
   updatedAt   DateTime    @updatedAt
 }

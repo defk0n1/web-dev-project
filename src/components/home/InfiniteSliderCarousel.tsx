@@ -13,7 +13,7 @@ import Autoplay from "embla-carousel-autoplay"
 import useEmblaCarousel from 'embla-carousel-react'
 import { BrandImage } from '@/lib/types'
 
-
+import Image from 'next/image'
 
 
 const InfiniteSliderCarousel = ({ items }: { items: BrandImage[] }) => {
@@ -41,7 +41,9 @@ const InfiniteSliderCarousel = ({ items }: { items: BrandImage[] }) => {
                     <div className="p-1">
                         <Card>
                             <CardContent className="flex aspect-square items-center justify-center p-6">
-                                <span className="text-3xl font-semibold">{item.name}</span>
+                                {/* <span className="text-3xl font-semibold">{item.name}</span> */}
+                                <Image src={`/images/${item.id}.png`} alt={item.name} width={200} height={200} />
+                                
                             </CardContent>
                         </Card>
                     </div>

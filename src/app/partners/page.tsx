@@ -1,24 +1,18 @@
 import Link from "next/link"
 import { Gift } from 'lucide-react'
 import { Button } from "@/components/ui/button"
+import { BrandImage } from "@/lib/types"
+import Image from 'next/image'
+
 
 export default function PartnersPage() {
-  const partners = [
-    { name: "Tunisianet", logo: "Tunisianet" },
-    { name: "Mytek", logo: "Mytek" },
-    { name: "Apple", logo: "" },
-    { name: "Nespresso", logo: "NESPRESSO" },
-    { name: "Elgato", logo: "elgato" },
-    { name: "Dyson", logo: "dyson" },
-    { name: "Amazon", logo: "amazon" },
-    { name: "Bose", logo: "BOSE" },
-    { name: "Nintendo", logo: "Nintendo" },
-    { name: "Nike", logo: "" },
-    { name: "G FUEL", logo: "G FUEL" },
-    { name: "HEALTH-ADE", logo: "HEALTH-ADE" },
-    { name: "Adidas", logo: "adidas" },
-  ]
-
+  const partners: BrandImage[] = [
+    { id: 1, name: "MyTek", link: "https://www.mytek.tn/" },
+  { id: 2, name: "Ben Yaghlene Shops", link: "https://ben-yaghlane.com/" },
+  { id: 3, name: "Peak", link: "https://www.peaksports.tn/" },
+  { id: 4, name: "SBS Informatique", link: "https://www.sbsinformatique.com/" },
+  { id: 5, name: "Tunisianet", link: "https://www.tunisianet.com.tn/" },
+];
   return (
     <div className="min-h-screen bg-black text-white">
 
@@ -27,16 +21,17 @@ export default function PartnersPage() {
           Partners
         </h1>
         
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-6">
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4 md:gap-12 mt-6" style={{height:"fit-content" , alignItems:"center"}}>
           {partners.map((partner) => (
+            <Link href={partner.link} key={partner.id}>
             <div
               key={partner.name}
-              className="bg-[#C97862] rounded-lg p-6 flex items-center justify-center h-24 transition-transform hover:scale-105"
+              className="rounded-lg p-6 flex items-center justify-center h-24 transition-transform hover:scale-105"
+              style={{height:"fit-content"}}
             >
-              <span className="text-white text-xl font-bold">
-                {partner.logo || partner.name}
-              </span>
+               <Image src={`/images/${partner.id}.png`} alt={partner.name} width={200} height={200} />
             </div>
+            </Link>
           ))}
         </div>
       </main>

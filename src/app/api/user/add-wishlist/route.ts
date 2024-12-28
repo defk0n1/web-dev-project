@@ -26,7 +26,7 @@ export async function POST(request: NextRequest) {
 
 
     // Validate input
-    if (!title || !privacy) {
+    if (!title) {
       return NextResponse.json(
         { message: 'Title and privacy are required' },
         { status: 400 }

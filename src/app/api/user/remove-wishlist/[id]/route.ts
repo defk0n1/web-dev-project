@@ -12,17 +12,21 @@ export async function DELETE(req: Request, { params }: { params: { id: string } 
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const { id } = params;
+  const { id } = await params;
 
   if (!id || isNaN(Number(id))) {
     return NextResponse.json({ error: 'Invalid or missing ID' }, { status: 400 });
   }
+
+  console.log(id)
 
   try {
     // First, verify the wishlist exists
     const wishlist = await prisma.wishlist.findUnique({
       where: { id: Number(id) },
     });
+
+    console.log(wishlist.wishes)
 
     if (!wishlist) {
       return NextResponse.json({ error: 'Wishlist not found' }, { status: 404 });

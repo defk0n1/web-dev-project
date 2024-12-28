@@ -70,6 +70,7 @@ export default function ProfileEditForm() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault()
     console.log(profileData)
+   
     try {
       const response = await EditUserProfile(profileData)
       console.log("Profile updated successfully")
@@ -176,7 +177,7 @@ export default function ProfileEditForm() {
             </Button>
           </div>
         </div> */}
-        <ProfilePictureUpload image={profileData.image || "./pfpplaceholder.png"}></ProfilePictureUpload>
+        <ProfilePictureUpload image={profileData.image || "/pfpplaceholder.png"}></ProfilePictureUpload>
         
         <p className="text-center text-gray-400">Edit profile info</p>
 
