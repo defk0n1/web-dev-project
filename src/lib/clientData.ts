@@ -2,8 +2,7 @@ import cacheReval from '@/app/actions'
 
 export async function AddWish(formData: any , wishlistId:any) {
     const apiUrl = `/api/wishlist/${wishlistId}`; // The API endpoint to fetch user data
-    const scraperUrl = `http://127.0.0.1:8000/scrape`
-
+    const scraperUrl = process.env.SCRAPER_URL ||`http://127.0.0.1:8000/scrape`
     const scraperBody = {
       "url" : formData.amazonLink
     }
